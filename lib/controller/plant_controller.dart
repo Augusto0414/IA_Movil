@@ -1,5 +1,3 @@
-// lib/controllers/plant_controller.dart
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:reconocimiento_plantas/model/prediction_model.dart';
