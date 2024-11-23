@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:reconocimiento_plantas/controller/plant_controller.dart';
+import 'package:reconocimiento_plantas/widget/loading_shimmer.dart';
 
 class PredictionResultsWidget extends StatelessWidget {
   const PredictionResultsWidget({super.key});
@@ -9,6 +10,10 @@ class PredictionResultsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<PlantController>(
       builder: (context, predictionProvider, child) {
+        if (predictionProvider.isLoading) {
+          return const LoadingShimmer();
+        }
+
         final prediction = predictionProvider.prediction;
 
         if (prediction == null) {

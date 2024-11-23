@@ -36,21 +36,19 @@ class HomeView extends StatelessWidget {
           Provider.of<PlantController>(context, listen: false);
 
       if (imageState.image == null) {
-        // Mostrar mensaje si no hay imagen seleccionada
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Primero selecciona una imagen')),
         );
         return;
       }
-
+      plantController.setLoading(true);
       try {
-        // Realizar predicción
         await plantController.predictImage(imageState.image!);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Predicción completada')),
         );
       } catch (e) {
-        // Manejo de errores
+        plantController.setLoading(false);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Error: ${e.toString()}')),
         );
