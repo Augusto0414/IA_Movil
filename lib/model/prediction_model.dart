@@ -13,13 +13,11 @@ class PredictionModel {
 
   factory PredictionModel.fromJson(Map<String, dynamic> json) {
     return PredictionModel(
-      clase: json['clase'],
-      descripcion: json['descripcion'],
-      caracteristicas: Map<String, dynamic>.from(
-          json['caracteristicas']), // Convertir características a Map
-      probabilidades: List<List<dynamic>>.from(
-        json['probabilidades'].map((x) => List<dynamic>.from(x.map((x) => x))),
-      ),
+      clase: json['clase'] ?? 'Desconocida',
+      descripcion: json['descripcion'] ?? 'Sin descripción disponible',
+      caracteristicas: Map<String, dynamic>.from(json['caracteristicas'] ?? {}),
+      probabilidades: List<List<dynamic>>.from((json['probabilidades'] ?? [])
+          .map((x) => List<dynamic>.from(x.map((x) => x)))),
     );
   }
 }
